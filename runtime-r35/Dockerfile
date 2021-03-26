@@ -29,11 +29,6 @@ RUN set -eux; \
 
 RUN apt-get update && apt-get install -y python3-dev python3-pip python3-venv
 
-RUN R -e "install.packages('reticulate')"
-#RETICULATE_MINICONDA_PATH
-RUN R -e "reticulate::install_miniconda()"
-RUN R -e "print(reticulate::miniconda_path())"
-
 ENTRYPOINT ["/usr/bin/python3"]
 CMD ["-c", "while 1: import ctypes; ctypes.CDLL(None).pause()" ]
 
