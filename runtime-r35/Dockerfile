@@ -27,7 +27,7 @@ RUN set -eux; \
     cargo --version; \
     rustc --version
 
-RUN apt-get update && apt-get install -y python3-dev python3-pip python3-venv
+RUN apt-get update && apt-get install -y python3 python3-dev python3-pip python3-venv
 
 ENTRYPOINT ["/usr/bin/python3"]
 CMD ["-c", "while 1: import ctypes; ctypes.CDLL(None).pause()" ]
