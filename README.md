@@ -16,7 +16,7 @@ Docker containers runtime environment for tercen operators.
 # build
 
 ```bash
-IMAGE=tercen/runtime-r35:3.5.3-0
+IMAGE=tercen/runtime-r35:3.5.3-1
 docker build -t ${IMAGE} runtime-r35
 docker push ${IMAGE}
  
