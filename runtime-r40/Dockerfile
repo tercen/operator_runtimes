@@ -29,7 +29,7 @@ RUN set -eux; \
 
 RUN apt-get update && apt-get install -y python3 python3-dev python3-pip python3-venv
 # needed for flowCut
-RUN apt-get install -y libgeos-dev libxt-dev libtiff-tools
+RUN apt-get install -y libgeos-dev libxt-dev libtiff-tools libzstd-dev
 
 ENTRYPOINT ["/usr/bin/python3"]
 CMD ["-c", "while 1: import ctypes; ctypes.CDLL(None).pause()" ]
