@@ -16,11 +16,11 @@ Docker containers runtime environment for tercen operators.
 # build
 
 ```bash
-IMAGE=tercen/runtime-r35:3.5.3-1
+IMAGE=tercen/runtime-r35:3.5.3-2
 docker build -t ${IMAGE} runtime-r35
 docker push ${IMAGE}
  
-IMAGE=tercen/runtime-r40:4.0.4-0
+IMAGE=tercen/runtime-r40:4.0.4-1
 docker build -t ${IMAGE} runtime-r40
 docker push ${IMAGE}
 ```
