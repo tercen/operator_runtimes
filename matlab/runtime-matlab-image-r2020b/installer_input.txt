@@ -1,0 +1,7 @@
+mode silent
+destinationFolder /opt/mcr
+agreeToLicense yes
+product.MATLAB_Runtime___Core true
+product.MATLAB_Runtime___Numerics true
+product.MATLAB_Runtime___Image_Processing_Toolbox_Addin true
+product.MATLAB_Runtime___Statistics_and_Machine_Learning_Toolbox_Addin true
