@@ -50,6 +50,6 @@ RUN apt-get -q update && \
 
 COPY --from=builder /opt/mcr/v99 /opt/mcr/v99
 
-ENV LD_LIBRARY_PATH .:/opt/mcr/v99/runtime/glnxa64:/opt/mcr/v99/bin/glnxa64:/opt/mcr/v99/sys/os/glnxa64:/opt/mcr/v99/extern/bin/glnxa64
+#ENV LD_LIBRARY_PATH .:/opt/mcr/v99/runtime/glnxa64:/opt/mcr/v99/bin/glnxa64:/opt/mcr/v99/sys/os/glnxa64:/opt/mcr/v99/sys/opengl/lib/glnxa64:/opt/mcr/v99/extern/bin/glnxa64
 
-ENV XAPPLRESDIR /etc/X11/app-defaults
+#ENV XAPPLRESDIR /etc/X11/app-defaults
