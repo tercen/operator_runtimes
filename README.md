@@ -20,7 +20,7 @@ IMAGE=tercen/runtime-r35:3.5.3-3
 docker build -t ${IMAGE} runtime-r35
 docker push ${IMAGE}
  
-IMAGE=tercen/runtime-r40:4.0.4-1
+IMAGE=tercen/runtime-r40:4.0.4-2
 docker build -t ${IMAGE} runtime-r40
 docker push ${IMAGE}
 

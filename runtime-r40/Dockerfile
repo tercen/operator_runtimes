@@ -32,5 +32,7 @@ RUN pip3 install wheel
 # needed for flowCut
 RUN apt-get install -y libgeos-dev libxt-dev libtiff5-dev libzstd-dev libwebp-dev
 
+RUN sed -i -e 's=^mozilla/DST_Root_CA_X3.crt=!mozilla/DST_ROOT_CA_X3.crt=' /etc/ca-certificates.conf && update-ca-certificates
+
 ENTRYPOINT ["/usr/bin/python3"]
 CMD ["-c", "while 1: import ctypes; ctypes.CDLL(None).pause()" ]
