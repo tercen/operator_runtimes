@@ -30,8 +30,8 @@ RUN set -eux; \
 RUN apt-get update && apt-get install -y python3 python3-dev python3-pip python3-venv python3-wheel
 RUN pip3 install wheel
 
-#RUN dpkg-reconfigure ca-certificates
-RUN sed -i -e 's=^mozilla/DST_Root_CA_X3.crt=!mozilla/DST_ROOT_CA_X3.crt=' /etc/ca-certificates.conf && update-ca-certificates
+RUN apt-get update && apt-get install -y ca-certificates && update-ca-certificates -f
+RUN sed -i -e 's=^mozilla/DST_Root_CA_X3.crt=!mozilla/DST_ROOT_CA_X3.crt=' /etc/ca-certificates.conf && update-ca-certificates -f
 
 ENTRYPOINT ["/usr/bin/python3"]
 CMD ["-c", "while 1: import ctypes; ctypes.CDLL(None).pause()" ]
