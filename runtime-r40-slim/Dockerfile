@@ -28,3 +28,5 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 #  r-recommended=${R_BASE_VERSION}-* \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
+
+RUN echo 'options(HTTPUserAgent = sprintf("R/%s R (%s)", getRversion(), paste(getRversion(), R.version["platform"], R.version["arch"], R.version["os"])))' >> /usr/lib/R/etc/Rprofile.site
