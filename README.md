@@ -20,7 +20,7 @@ IMAGE=tercen/dind
 docker build -t ${IMAGE} dind
 docker push ${IMAGE}
 
-IMAGE=tercen/runtime-r35:3.5.3-5
+IMAGE=tercen/runtime-r35:3.5.3-6
 docker build -t ${IMAGE} runtime-r35
 docker push ${IMAGE}
  

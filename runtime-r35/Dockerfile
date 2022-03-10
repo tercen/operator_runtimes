@@ -33,6 +33,8 @@ RUN pip3 install wheel
 RUN apt-get update && apt-get install -y ca-certificates && update-ca-certificates -f
 RUN sed -i -e 's=^mozilla/DST_Root_CA_X3.crt=!mozilla/DST_ROOT_CA_X3.crt=' /etc/ca-certificates.conf && update-ca-certificates -f
 
+RUN echo 'options(repos=c(CRAN="https://cran.rstudio.com"))' >> /usr/local/lib/R/etc/Rprofile.site
+
 ENTRYPOINT ["/usr/bin/python3"]
 CMD ["-c", "while 1: import ctypes; ctypes.CDLL(None).pause()" ]
 
