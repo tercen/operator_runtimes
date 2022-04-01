@@ -32,5 +32,4 @@ RUN pip3 install wheel
 # needed for flowCut
 RUN apt-get install -y libgeos-dev libxt-dev libtiff5-dev libzstd-dev libwebp-dev
 
-ENTRYPOINT ["/usr/bin/python3"]
-CMD ["-c", "while 1: import ctypes; ctypes.CDLL(None).pause()" ]
+ENTRYPOINT ["/usr/local/bin/R" , "--no-save" , "--no-restore" , "--no-environ" , "--slave" ]

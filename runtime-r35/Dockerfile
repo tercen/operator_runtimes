@@ -35,8 +35,8 @@ RUN sed -i -e 's=^mozilla/DST_Root_CA_X3.crt=!mozilla/DST_ROOT_CA_X3.crt=' /etc/
 
 RUN echo 'options(repos=c(CRAN="https://cran.rstudio.com"))' >> /usr/local/lib/R/etc/Rprofile.site
 
-ENTRYPOINT ["/usr/bin/python3"]
-CMD ["-c", "while 1: import ctypes; ctypes.CDLL(None).pause()" ]
+ENTRYPOINT ["/usr/local/bin/R" , "--no-save" , "--no-restore" , "--no-environ" , "--slave" ]
+
 
 
 
