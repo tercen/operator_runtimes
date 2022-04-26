@@ -32,4 +32,14 @@ RUN pip3 install wheel
 # needed for flowCut
 RUN apt-get install -y libgeos-dev libxt-dev libtiff5-dev libzstd-dev libwebp-dev
 
+
+# Global site-wide config
+RUN  echo 'options(repos=c(TERCEN="https://cran.tercen.com/api/v1/rlib/tercen",\
+     CRAN="https://cran.tercen.com/api/v1/rlib/CRAN", \
+     BioCsoft="https://cran.tercen.com/api/v1/rlib/BioCsoft-3.12", \
+     BioCann="https://cran.tercen.com/api/v1/rlib/BioCann-3.12", \
+     BioCexp="https://cran.tercen.com/api/v1/rlib/BioCexp-3.12", \
+     BioCworkflows="https://cran.tercen.com/api/v1/rlib/BioCworkflows-3.12" \
+     ))' >> /usr/local/lib/R/etc/Rprofile.site
+
 ENTRYPOINT ["/usr/local/bin/R" , "--no-save" , "--no-restore" , "--no-environ" , "--slave" ]

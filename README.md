@@ -12,6 +12,7 @@ Docker containers runtime environment for tercen operators.
 - rust 1.40.0
 - dart 2.10.5-1
 - python 3.8
+- CRAN=https://cran.tercen.com/api/v1/rlib/CRAN
  
 # build
 
@@ -24,7 +25,7 @@ IMAGE=tercen/runtime-r35:3.5.3-7
 docker build -t ${IMAGE} runtime-r35
 docker push ${IMAGE}
  
-IMAGE=tercen/runtime-r40:4.0.4-3
+IMAGE=tercen/runtime-r40:4.0.4-4
 docker build -t ${IMAGE} runtime-r40
 docker push ${IMAGE}
 
