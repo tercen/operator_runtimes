@@ -36,6 +36,10 @@ docker push ${IMAGE}
 IMAGE=tercen/runtime-matlab-image:r2020b-2
 docker build -t ${IMAGE} matlab/runtime-matlab-image-r2020b
 docker push ${IMAGE}
+
+IMAGE=tercen/runtime-flowsuite:3.15-1
+docker build -t ${IMAGE} runtime-flowsuite
+docker push ${IMAGE}
 ```
   
  
