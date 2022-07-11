@@ -44,3 +44,10 @@ docker push ${IMAGE}
   
  
 
+# dart
+
+```shell
+IMAGE=tercen/dart:2.14.4
+docker build -t ${IMAGE} dart
+docker push ${IMAGE}
+```
