@@ -1,0 +1,36 @@
+name: Build runtime images
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the main branch
+on:
+  push:
+    branches: [ag/automation]
+    tags-ignore:
+      - '**'
+  pull_request:
+    branches: [main, master]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        image: [tercen/runtime_flowsuite:3.15-1]
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+    - name: docker login
+      run: |
+        docker login --username ${{ secrets.DOCKER_HUB_USERNAME }} --password ${{ secrets.DOCKER_HUB_PASSWORD }}
+    - name: Check if image exists
+      run: |
+        echo "IMAGE_EXISTS=$(docker manifest inspect ${{ matrix.image }} > /dev/null ; echo $?)"  >> $GITHUB_ENV
+        echo "DIR_NAME=$(echo ${{ matrix.image }} | grep -o -P '(?<=tercen/).*(?=:)')"  >> $GITHUB_ENV
+    - name: Build docker image
+      if: env.IMAGE_EXISTS == 0
+      run: |
+        docker build -t ${{ matrix.image }} ./env.DIR_NAME
+    - name: docker push
+      run: |
+        docker push ${{ matrix.image }}
