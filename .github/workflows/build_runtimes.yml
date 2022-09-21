@@ -4,7 +4,7 @@ name: Build runtime images
 # events but only for the main branch
 on:
   push:
-    branches: [ag/automation]
+    branches: [main, master]
     tags-ignore:
       - '**'
   pull_request:
