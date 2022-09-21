@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        image: [tercen/runtime_flowsuite:3.15-1]
+        image: ["tercen/runtime_flowsuite:3.15-1"]
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
