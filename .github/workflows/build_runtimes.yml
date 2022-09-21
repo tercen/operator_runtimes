@@ -28,10 +28,11 @@ jobs:
         echo "IMAGE_EXISTS=$(docker manifest inspect ${{ matrix.image }} > /dev/null ; echo $?)"  >> $GITHUB_ENV
         echo "DIR_NAME=$(echo ${{ matrix.image }} | grep -o -P '(?<=tercen/).*(?=:)')"  >> $GITHUB_ENV
     - name: Build docker image
-      if: env.IMAGE_EXISTS == 0
+      # run only if image is missing (1) 
+      if: env.IMAGE_EXISTS == 1
       run: |
         docker build -t ${{ matrix.image }} ./${{ env.DIR_NAME }}
     - name: docker push
-      if: env.IMAGE_EXISTS == 0
+      if: env.IMAGE_EXISTS == 1
       run: |
         docker push ${{ matrix.image }}
