@@ -30,7 +30,7 @@ jobs:
     - name: Build docker image
       if: env.IMAGE_EXISTS == 0
       run: |
-        docker build -t ${{ matrix.image }} ./env.DIR_NAME
+        docker build -t ${{ matrix.image }} ./${{ env.DIR_NAME }}
     - name: docker push
       if: env.IMAGE_EXISTS == 0
       run: |
