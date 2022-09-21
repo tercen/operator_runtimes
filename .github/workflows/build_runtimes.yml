@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        image: ["tercen/runtime_flowsuite:3.15-1"]
+        image: ["tercen/runtime-flowsuite:3.15-1"]
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
@@ -32,5 +32,6 @@ jobs:
       run: |
         docker build -t ${{ matrix.image }} ./env.DIR_NAME
     - name: docker push
+      if: env.IMAGE_EXISTS == 0
       run: |
         docker push ${{ matrix.image }}
