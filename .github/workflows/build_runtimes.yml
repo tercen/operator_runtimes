@@ -20,7 +20,7 @@ jobs:
           - "tercen/runtime-r35:3.5.3-7"
           - "tercen/runtime-r40:4.0.4-4"
           - "tercen/runtime-r40-slim:4.0.4-1"
-          - "tercen/runtime-flowsuite:3.15-3"
+          - "tercen/runtime-flowsuite:3.15-4"
           - "tercen/runtime-matlab-image:r2020b-2"
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
