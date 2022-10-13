@@ -30,7 +30,7 @@ RUN set -eux; \
 RUN apt-get update && apt-get install -y python3 python3-dev python3-pip python3-venv python3-wheel
 RUN pip3 install wheel
 # needed for flowCut
-RUN apt-get install -y libgeos-dev libxt-dev libtiff5-dev libzstd-dev libwebp-dev cmake
+RUN apt-get install -y libgeos-dev libxt-dev libtiff5-dev libzstd-dev libwebp-dev libglpk-dev cmake
 
 # Global site-wide config
 RUN  echo 'options(repos=c(TERCEN="https://cran.tercen.com/api/v1/rlib/tercen",\
