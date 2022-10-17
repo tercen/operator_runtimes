@@ -44,12 +44,13 @@ RUN  echo 'options(repos=c(TERCEN="https://cran.tercen.com/api/v1/rlib/tercen",\
 RUN R -e "BiocManager::install('MetaCyto')"
 RUN R -e "BiocManager::install('openCyto')"
 RUN R -e "BiocManager::install('diffcyt')"
+RUN R -e "BiocManager::install('CATALYST')"
 
 RUN R -e "remotes::install_github('ghar1821/TrackSOM', ref = 'v0.1.0')"
 RUN R -e "remotes::install_github('RGLab/scamp', ref='v0.5.0')"
 RUN R -e "remotes::install_github('RGLab/FAUST', ref='f900614')"
 
-RUN R -e "remotes::install_github('tercen/tim', ref = '0.0.13')"
+RUN R -e "remotes::install_github('tercen/tim', ref = '0.0.20')"
 RUN R -e "remotes::install_github('tercen/teRcen', ref='0.12.7')"
 
 ENTRYPOINT ["/usr/local/bin/R" , "--no-save" , "--no-restore" , "--no-environ" , "--slave" ]
