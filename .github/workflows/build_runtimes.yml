@@ -15,11 +15,13 @@ jobs:
     - name: docker login
       run: |
         docker login --username ${{ secrets.DOCKER_HUB_USERNAME }} --password ${{ secrets.DOCKER_HUB_PASSWORD }}
-    - name: Check if image exists
+    - name: Get image name
       run: |
         echo "IMAGE_NAME=$(echo "tercen/$GITHUB_REF_NAME" | sed 's/_/:/')"  >> $GITHUB_ENV
+    - name: Check if image exists
+      run: |
         echo "IMAGE_MISSING=$(docker manifest inspect ${{ env.IMAGE_NAME }} > /dev/null ; echo $?)"  >> $GITHUB_ENV
-        echo "DIR_NAME=$(echo "$IMAGE_NAME" | grep -o -P '(?<=tercen/).*(?=:)')"  >> $GITHUB_ENV
+        echo "DIR_NAME=$(echo ${{ env.IMAGE_NAME }} | grep -o -P '(?<=tercen/).*(?=:)')"  >> $GITHUB_ENV
     - name: Build docker image
       # run only if image is missing (1) 
       if: env.IMAGE_MISSING == 1
