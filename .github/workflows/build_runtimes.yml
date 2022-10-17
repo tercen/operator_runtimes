@@ -4,7 +4,7 @@ name: Build runtime image
 on:
   push:
     tags:
-      - '^tercen/runtime-.*_.*'
+      - 'tercen/runtime-.*_.*'
 
 jobs:
   build:
