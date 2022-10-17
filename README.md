@@ -1,15 +1,17 @@
 
-Docker containers runtime environment for tercen operators.
+Docker containers runtime environment for Tercen operators.
 
 # Runtimes specifications
 
 ## runtime-r35
+
 - based on rocker/tidyverse:3.5.3
 - rust 1.40.0
 - dart 2.10.5-1
 - python 3.6
 
 ## runtime-r40
+
 - based on rocker/tidyverse:4.0.3
 - rust 1.40.0
 - dart 2.10.5-1
@@ -18,14 +20,23 @@ Docker containers runtime environment for tercen operators.
  
 # Build runtimes
 
-You can build and push runtime images automatically using GitHub Actions by editing the `build_runtimes.yml` workflow. In particular, incrementing version number in the images list of the config file will trigger build:
+You can build and push runtime images automatically using GitHub Actions using tags:
 
-```yml
-          - "tercen/runtime-r35:3.5.3-7"
-          - "tercen/runtime-r40:4.0.4-4"
-          - "tercen/runtime-r40-slim:4.0.4-1"
-          - "tercen/runtime-flowsuite:3.15-3"
-          - "tercen/runtime-matlab-image:r2020b-2"
+```
+git tag tercen/runtime-r35:3.5.3-7
+git push --tags
+
+git tag tercen/runtime-r40:4.0.4-4
+git push --tags
+
+git tag tercen/runtime-r40-slim:4.0.4-1
+git push --tags
+
+git tag tercen/runtime-flowsuite:3.15-3
+git push --tags
+
+git tag tercen/runtime-matlab-image:r2020b-2
+git push --tags
 ```
 
 # dind

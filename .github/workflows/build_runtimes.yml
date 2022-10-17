@@ -1,10 +1,10 @@
 name: Build runtime image
 
-# Run when tag starts with "runtime"
+# Run when tag starts with "tercen/runtime"
 on:
   push:
     tags:
-      - '^runtime-.*:.*'
+      - '^tercen/runtime-.*:.*'
 
 jobs:
   build:
