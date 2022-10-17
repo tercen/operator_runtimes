@@ -17,14 +17,15 @@ jobs:
         docker login --username ${{ secrets.DOCKER_HUB_USERNAME }} --password ${{ secrets.DOCKER_HUB_PASSWORD }}
     - name: Check if image exists
       run: |
-        echo "IMAGE_MISSING=$(docker manifest inspect $GITHUB_REF_NAME > /dev/null ; echo $?)"  >> $GITHUB_ENV
-        echo "DIR_NAME=$(echo $GITHUB_REF_NAME | grep -o -P '(?<=tercen/).*(?=:)')"  >> $GITHUB_ENV
+        echo "IMAGE_NAME=$(echo $GITHUB_REF_NAME | sed 's/_/:/')"  >> $GITHUB_ENV
+        echo "IMAGE_MISSING=$(docker manifest inspect env.IMAGE_NAME > /dev/null ; echo $?)"  >> $GITHUB_ENV
+        echo "DIR_NAME=$(echo env.IMAGE_NAME | grep -o -P '(?<=tercen/).*(?=_)')"  >> $GITHUB_ENV
     - name: Build docker image
       # run only if image is missing (1) 
       if: env.IMAGE_MISSING == 1
       run: |
-        docker build -t $GITHUB_REF_NAME ./${{ env.DIR_NAME }}
+        docker build -t env.IMAGE_NAME ./${{ env.DIR_NAME }}
     - name: docker push
       if: env.IMAGE_MISSING == 1
       run: |
-        docker push $GITHUB_REF_NAME
+        docker push env.IMAGE_NAME

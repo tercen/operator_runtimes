@@ -23,19 +23,19 @@ Docker containers runtime environment for Tercen operators.
 You can build and push runtime images automatically using GitHub Actions using tags:
 
 ```
-git tag tercen/runtime-r35:3.5.3-7
+git tag tercen/runtime-r35_3.5.3-7
 git push --tags
 
-git tag tercen/runtime-r40:4.0.4-4
+git tag tercen/runtime-r40_4.0.4-4
 git push --tags
 
-git tag tercen/runtime-r40-slim:4.0.4-1
+git tag tercen/runtime-r40-slim_4.0.4-1
 git push --tags
 
-git tag tercen/runtime-flowsuite:3.15-3
+git tag tercen/runtime-flowsuite_3.15-3
 git push --tags
 
-git tag tercen/runtime-matlab-image:r2020b-2
+git tag tercen/runtime-matlab-image_r2020b-2
 git push --tags
 ```
 
