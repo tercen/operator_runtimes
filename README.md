@@ -26,7 +26,7 @@ You can build and push runtime images automatically using GitHub Actions using t
 git tag tercen/runtime-r35_3.5.3-7
 git push --tags
 
-git tag tercen/runtime-r40_4.0.4-5
+git tag tercen/runtime-r40_4.0.4-6
 git push --tags
 
 git tag tercen/runtime-r40-slim_4.0.4-1
