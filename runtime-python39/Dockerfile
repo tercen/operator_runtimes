@@ -22,7 +22,7 @@ RUN pip3 install wheel
 #/master/tercen-0.0.1-py3-none-any.whl
 
 
-ENTRYPOINT ["python3"]
+#ENTRYPOINT ["python3"]
 
 
 
