@@ -1,7 +1,6 @@
 FROM debian:bullseye-slim
 
-RUN apt-get update && apt-get install -y build-essential \
-	git \
+RUN apt-get update && apt-get install --no-install-recommends -y build-essential \
 	jq \
 	libbz2-dev \
 	libffi-dev \
@@ -16,11 +15,14 @@ RUN apt-get update && apt-get install -y build-essential \
 	libncurses5-dev \
 	libncursesw5-dev \
 	xz-utils \
-	tk-dev \
-	python3-openssl \
-	python3-pip
+	tk-dev
 
-RUN git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-RUN ~/.pyenv/bin/pyenv install 3.9.0
+RUN wget https://www.python.org/ftp/python/3.9.17/Python-3.9.17.tar.xz && \
+	tar -xf Python-3.9.17.tar.xz && \
+	cd Python-3.9.17 && \
+	./configure && \
+	make && \
+	sudo make install && \
+	alias python=python3.9
 
 RUN pip3 install wheel
