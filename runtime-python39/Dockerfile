@@ -1,6 +1,8 @@
 FROM debian:bullseye-slim
 
 RUN apt-get update && apt-get install --no-install-recommends -y build-essential \
+	ca-certificates \
+	git \
 	jq \
 	libbz2-dev \
 	libffi-dev \
