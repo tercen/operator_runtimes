@@ -2,6 +2,7 @@ FROM debian:bullseye-slim
 
 RUN apt-get update && apt-get install --no-install-recommends -y build-essential \
 	ca-certificates \
+	sudo \
 	git \
 	jq \
 	libbz2-dev \
