@@ -50,7 +50,7 @@ docker push ${IMAGE}
 # dart
 
 ```shell
-IMAGE=tercen/dart:2.19.6-1
+IMAGE=tercen/dart:3.1.3-1
 docker build -t ${IMAGE} dart
 docker push ${IMAGE}
 ```
@@ -58,7 +58,7 @@ docker push ${IMAGE}
 # runtime
 
 ```shell
-IMAGE=tercen/runtime-r40:4.0.4-5
+IMAGE=tercen/runtime-r40:4.0.4-6
 docker build -t ${IMAGE} runtime-r40
 docker push ${IMAGE}
 ```
