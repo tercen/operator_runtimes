@@ -50,7 +50,7 @@ docker push ${IMAGE}
 # dart
 
 ```shell
-IMAGE=tercen/dart:3.3.1-1
+IMAGE=tercen/dart:3.5.3-1
 docker build -t ${IMAGE} dart
 docker push ${IMAGE}
 ```
