@@ -31,7 +31,6 @@ RUN apt-get update && apt-get install -y cmake libgeos-dev libxt-dev libtiff5-de
 
 # Global site-wide config
 RUN  echo 'options(repos=c(TERCEN="https://cran.tercen.com/api/v1/rlib/tercen",\
-     CRAN="https://cran.tercen.com/api/v1/rlib/CRAN"
-     ))' >> /usr/local/lib/R/etc/Rprofile.site
+     CRAN="https://cran.tercen.com/api/v1/rlib/CRAN"))' >> /usr/local/lib/R/etc/Rprofile.site
 
 ENTRYPOINT ["/usr/local/bin/R" , "--no-save" , "--no-restore" , "--no-environ" , "--slave" ]

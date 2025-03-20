@@ -61,6 +61,9 @@ docker push ${IMAGE}
 IMAGE=tercen/runtime-r40:4.0.4-6
 docker build -t ${IMAGE} runtime-r40
 docker push ${IMAGE}
+
+git tag runtime-r42_2.2.2-4
+git push --tags
 ```
 
 ## tensorflow
