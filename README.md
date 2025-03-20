@@ -62,3 +62,13 @@ IMAGE=tercen/runtime-r40:4.0.4-6
 docker build -t ${IMAGE} runtime-r40
 docker push ${IMAGE}
 ```
+
+## tensorflow
+
+```shell
+IMAGE=tercen/runtime-tf:2.17.0-gpu
+docker build -t ${IMAGE} runtime-tf
+docker push ${IMAGE}
+
+git tag runtime-tf_2.17.0-gpu
+```
