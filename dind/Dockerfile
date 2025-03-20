@@ -1,14 +1,40 @@
-FROM docker:20.10.9-dind-alpine3.14
+FROM nvidia/cuda:12.1.0-runtime-ubuntu22.04
 
-#RUN apk --update add --no-cache openssh bash \
-#  && sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config \
-#  && echo "root:${PASSWORD}" | chpasswd \
-#  && rm -rf /var/cache/apk/*
-## Defining the Port 22 for service
-#RUN sed -ie 's/#Port 22/Port 22/g' /etc/ssh/sshd_config
-#RUN /usr/bin/ssh-keygen -A
-#RUN ssh-keygen -t rsa -b 4096 -f  /etc/ssh/ssh_host_key
-#ENV NOTVISIBLE "in users profile"
-#RUN echo "export VISIBLE=now" >> /etc/profile
-#EXPOSE 22
-#CMD ["/usr/sbin/sshd", "-D"]
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    apt-get update && \
+    apt-get install -y \
+        apt-utils \
+        ca-certificates \
+        openssh-client \
+        curl \
+        iptables \
+        gnupg
+
+# NVIDIA Container Toolkit & Docker
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    distribution=$(. /etc/os-release;echo $ID$VERSION_ID) && \
+    curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | apt-key add - && \
+    curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | tee /etc/apt/sources.list.d/nvidia-docker.list && \
+    apt-get update && \
+    apt-get install -y nvidia-docker2 docker.io
+
+# missing dockremap user
+
+ENV DOCKER_TLS_CERTDIR=/certs
+RUN mkdir /certs /certs/client && chmod 1777 /certs /certs/client
+
+# https://github.com/docker-library/docker
+ADD https://raw.githubusercontent.com/docker-library/docker/master/modprobe.sh /usr/local/bin/modprobe
+ADD https://raw.githubusercontent.com/docker-library/docker/master/dockerd-entrypoint.sh /usr/local/bin/
+ADD https://raw.githubusercontent.com/docker-library/docker/master/docker-entrypoint.sh /usr/local/bin/
+ADD https://raw.githubusercontent.com/moby/moby/master/hack/dind /usr/local/bin/dind
+
+RUN chmod +x /usr/local/bin/dockerd-entrypoint.sh /usr/local/bin/docker-entrypoint.sh /usr/local/bin/dind
+
+VOLUME /var/lib/docker
+EXPOSE 2375 2376
+
+ENTRYPOINT ["dockerd-entrypoint.sh"]
+CMD []
