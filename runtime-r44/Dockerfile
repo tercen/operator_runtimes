@@ -1,4 +1,4 @@
-FROM rocker/tidyverse:4.2.2
+FROM rocker/tidyverse:4.4.3
 
 USER root
 
@@ -28,9 +28,5 @@ RUN set -eux; \
     rustc --version;
 
 RUN apt-get update && apt-get install -y cmake libgeos-dev libxt-dev libtiff5-dev libzstd-dev libwebp-dev
-
-# Global site-wide config
-RUN  echo 'options(repos=c(TERCEN="https://cran.tercen.com/api/v1/rlib/tercen",\
-     CRAN="https://cran.tercen.com/api/v1/rlib/CRAN"))' >> /usr/local/lib/R/etc/Rprofile.site
 
 ENTRYPOINT ["/usr/local/bin/R" , "--no-save" , "--no-restore" , "--no-environ" , "--slave" ]

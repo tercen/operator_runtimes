@@ -55,14 +55,18 @@ docker build -t ${IMAGE} dart
 docker push ${IMAGE}
 ```
 
-# runtime
+# runtime r
 
 ```shell
 IMAGE=tercen/runtime-r40:4.0.4-6
 docker build -t ${IMAGE} runtime-r40
 docker push ${IMAGE}
+```
 
-git tag runtime-r42_2.2.2-4
+# runtime r44
+
+```
+git tag runtime-r44_4.4.3-1
 git push --tags
 ```
 
