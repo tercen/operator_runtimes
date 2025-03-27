@@ -29,4 +29,9 @@ RUN set -eux; \
 
 RUN apt-get update && apt-get install -y cmake libgeos-dev libxt-dev libtiff5-dev libzstd-dev libwebp-dev
 
+RUN R -e "remotes::install_github('tercen/teRcenHttp', ref = '1.0.21', upgrade = FALSE, force = TRUE, dependencies = c('Depends', 'Imports', 'Remotes'))"
+RUN R -e "remotes::install_github('tercen/mtercen', ref = '1.0.8', upgrade = FALSE, force = TRUE, dependencies = c('Depends', 'Imports', 'Remotes'))"
+RUN R -e "remotes::install_github('tercen/tercenApi', ref = '0.13.3', upgrade = FALSE, force = TRUE, dependencies = c('Depends', 'Imports', 'Remotes'))"
+RUN R -e "remotes::install_github('tercen/teRcen', ref = '0.13.12', upgrade = FALSE, force = TRUE, dependencies = c('Depends', 'Imports', 'Remotes'))"
+
 ENTRYPOINT ["/usr/local/bin/R" , "--no-save" , "--no-restore" , "--no-environ" , "--slave" ]
