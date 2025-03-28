@@ -34,6 +34,6 @@ RUN echo 'options(repos=c(TERCEN="https://cran.tercen.com/api/v1/rlib/tercen"))'
 RUN R -e "install.packages('tercen/teRcenHttp', ref = '1.0.21')"
 RUN R -e "install.packages('tercen/mtercen', ref = '1.0.8')"
 RUN R -e "install.packages('tercen/tercenApi', ref = '0.13.3')"
-RUN R -e "install.packages('tercen/teRcen', ref = '0.13.16')"
+RUN R -e "install.packages('tercen/teRcen', ref = '0.13.17')"
 
 ENTRYPOINT ["/usr/local/bin/R" , "--no-save" , "--no-restore" , "--no-environ" , "--slave" ]
