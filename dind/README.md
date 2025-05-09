@@ -2,7 +2,7 @@ https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/support
 
 ```shell
 sudo apt install nvidia-driver-535 nvidia-utils-535 -y
-
+sudo apt install nvidia-driver-570 nvidia-utils-570 -y
 nvidia-smi
 
 ```
@@ -42,6 +42,23 @@ docker run -it \
       -v ${PWD}/var/run:/var/run \
       docker:28.0.1-cli-alpine3.21
       
+docker run -it --rm --runtime=nvidia --gpus all tensorflow/tensorflow:2.14.0-gpu \
+   python -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
+   
+#   ls -lha /usr/local/cuda/lib64/libcudart.so.12
+   
+   nvidia-smi
+   nvcc -V
+   
+docker run -it --rm --gpus all tensorflow/tensorflow:2.17.0-gpu bash
+docker run -it --rm --runtime=nvidia -e NVIDIA_VISIBLE_DEVICES=all -e NVIDIA_DRIVER_CAPABILITIES=all tensorflow/tensorflow:2.17.0-gpu bash
+docker run -it --rm --runtime=nvidia --gpus all tensorflow/tensorflow:2.17.0-gpu bash
+docker run -it --rm --runtime=nvidia --gpus all tensorflow/tensorflow:2.17.0-gpu \
+   python -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
+
+docker run -it --rm --runtime=nvidia --gpus all tensorflow/tensorflow:2.17.0-gpu \
+   python -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
+   
 docker run -it --rm --gpus all tensorflow/tensorflow:2.17.0-gpu \
    python -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))" 
    
@@ -54,15 +71,6 @@ docker run --rm --runtime=nvidia --gpus all ubuntu nvidia-smi
 docker run -it --rm --runtime=nvidia --gpus all debian bash
 import tensorflow as tf
 tf.test.is_gpu_available()
-
-docker run -it --rm --runtime=nvidia --gpus all tensorflow/tensorflow \
-   python -c "import tensorflow as tf; print(tf.reduce_sum(tf.random.normal([1000, 1000])))"
-   
-docker run -it --rm --runtime=nvidia --gpus all tensorflow/tensorflow \
-   python -c "import tensorflow as tf; print(tf.test.is_gpu_available())"
-
-docker run -it --rm --runtime=nvidia --gpus all tensorflow/tensorflow \
-   python -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"    
    
 docker run -it --rm --gpus all tensorflow/tensorflow:2.14.0-gpu bash 
 
