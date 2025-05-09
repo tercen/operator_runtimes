@@ -66,7 +66,7 @@ docker push ${IMAGE}
 # runtime r44
 
 ```
-git tag runtime-r44_4.4.3-2
+git tag runtime-r44_4.4.3-7
 git push --tags
 ```
 
