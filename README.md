@@ -29,7 +29,7 @@ git push --tags
 git tag runtime-r40_4.0.4-6
 git push --tags
 
-git tag runtime-r40-slim_4.0.4-1
+git tag runtime-r44_4.4.3-10
 git push --tags
 
 git tag runtime-flowsuite_3.15-3
