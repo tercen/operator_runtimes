@@ -35,13 +35,7 @@ RUN set -eux; \
 RUN R -e "install.packages('remotes', repos='https://cran.r-project.org')" && \
     R -e "install.packages(c('dplyr','tidyr','data.table','BiocManager'), repos='https://cran.r-project.org')" && \
     R -e "remotes::install_github('rstudio/renv@${RENV_VERSION}')" && \
-    cat >> /usr/local/lib/R/etc/Rprofile.site <<'RPROF' && \
-    options(repos = c( \
-      TERCEN = "https://cran.tercen.com/api/v1/rlib/tercen", \
-      CRAN = "https://cran.tercen.com/api/v1/rlib/CRAN", \
-      Bioconductor = BiocManager::repositories()[names(BiocManager::repositories()) != "CRAN"] \
-    )) \
-    RPROF
+    echo 'options(repos = c(TERCEN = "https://cran.tercen.com/api/v1/rlib/tercen", CRAN = "https://cran.tercen.com/api/v1/rlib/CRAN", Bioconductor = BiocManager::repositories()[names(BiocManager::repositories()) != "CRAN"]))' > /usr/local/lib/R/etc/Rprofile.site && \
     R -e "remotes::install_github('tercen/teRcenHttp@1.0.21')" && \
     R -e "remotes::install_github('tercen/mtercen@1.0.8')" && \
     R -e "remotes::install_github('tercen/tercenApi@0.13.3')" && \
