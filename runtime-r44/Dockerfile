@@ -5,6 +5,9 @@ USER root
 ENV RENV_VERSION=v1.1.3 \
     DEBIAN_FRONTEND=noninteractive
 
+RUN update-alternatives --set libblas.so.3-x86_64-linux-gnu /usr/lib/x86_64-linux-gnu/blas/libblas.so.3 && \
+    update-alternatives --set liblapack.so.3-x86_64-linux-gnu /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3
+
 # Install build-time dependencies and Rust, install R packages, then remove build tools and caches to reduce image size
 RUN set -eux; \
     apt-get update; \

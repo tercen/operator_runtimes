@@ -29,7 +29,7 @@ git push --tags
 git tag runtime-r40_4.0.4-6
 git push --tags
 
-git tag runtime-r44_4.4.3-12
+git tag runtime-r44_4.4.3-13
 git push --tags
 
 git tag tercen/runtime-matlab-image_r2020b-2
