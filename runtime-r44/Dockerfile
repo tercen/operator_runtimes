@@ -1,7 +1,5 @@
 FROM rocker/r-base:4.4.3
 
-USER root
-
 ENV RENV_VERSION=v1.1.3 \
     DEBIAN_FRONTEND=noninteractive
 
@@ -12,6 +10,9 @@ RUN set -eux; \
         ca-certificates wget curl gnupg2 build-essential pkg-config \
         libssl-dev libxml2-dev libcurl4-openssl-dev \
         cmake libgeos-dev libxt-dev libtiff5-dev libzstd-dev libwebp-dev libglpk40 libglpk-dev;
+
+RUN mkdir -p /usr/local/lib/R/etc && \
+    chown -R 0:0 /usr/local/lib/R
 
 RUN R -e "install.packages('remotes', repos='https://cran.r-project.org')" && \
     R -e "install.packages(c('dplyr', 'tidyr', 'data.table', 'BiocManager'), repos='https://cran.r-project.org')" && \
