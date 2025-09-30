@@ -26,6 +26,9 @@ You can build and push runtime images automatically using GitHub Actions using t
 git tag runtime-r35_3.5.3-8
 git push --tags
 
+git tag runtime-r35b_3.5.3-2
+git push --tags
+
 git tag runtime-r40_4.0.4-6
 git push --tags
 
