@@ -1,9 +1,5 @@
 FROM rocker/r-ver:4.4.3
 
-ENV RENV_VERSION=v1.1.3 \
-    DEBIAN_FRONTEND=noninteractive
-
-# Install build-time dependencies and Rust, install R packages, then remove build tools and caches to reduce image size
 RUN set -eux; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
@@ -13,7 +9,7 @@ RUN set -eux; \
         libwebp-dev libglpk40 libglpk-dev;
 
 RUN R -e "install.packages('remotes', repos='https://cran.r-project.org')" && \
-    R -e "remotes::install_github('rstudio/renv@${RENV_VERSION}')" && \
+    R -e "remotes::install_github('rstudio/renv@v1.1.3')" && \
     echo 'options(repos = c(TERCEN = "https://cran.tercen.com/api/v1/rlib/tercen", CRAN = "https://cran.tercen.com/api/v1/rlib/CRAN", Bioconductor = BiocManager::repositories()[names(BiocManager::repositories()) != "CRAN"]))' > /usr/local/lib/R/etc/Rprofile.site && \
     R -e "install.packages(c('dplyr', 'tidyr', 'data.table', 'BiocManager'))" && \
     R -e "install.packages('https://cran.tercen.com/api/v1/rlib/tercen/src/contrib/mtercen_1.0.9.tar.gz', repos=NULL, type='source')" && \
