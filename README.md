@@ -35,6 +35,10 @@ git push --tags
 git tag runtime-r44_4.4.3-11
 git push --tags
 
+git tag runtime-r44-minimal_4.4-1
+git push --tags
+
+
 git tag tercen/runtime-matlab-image_r2020b-2
 git push --tags
 ```
@@ -59,8 +63,13 @@ docker push ${IMAGE}
 
 ```shell
 IMAGE=tercen/runtime-r40:4.0.4-6
-docker build -t ${IMAGE} runtime-r40
+IMAGE=tercen/runtime-r44-minimal:4.4-0
+docker build  --no-cache -t ${IMAGE} runtime-r44-minimal
 docker push ${IMAGE}
+
+docker run -it --rm tercen/runtime-r44-minimal:4.4-0 sh
+R
+teRcenHttp::GET("https://tercen.com")
 ```
 
 # runtime r44
