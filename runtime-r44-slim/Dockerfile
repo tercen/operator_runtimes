@@ -1,4 +1,4 @@
-FROM rocker/r-base:4.4.3
+FROM rocker/r-ver:4.4.3
 
 ENV RENV_VERSION=v1.1.3 \
     DEBIAN_FRONTEND=noninteractive
