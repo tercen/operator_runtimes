@@ -23,7 +23,7 @@ Docker containers runtime environment for Tercen operators.
 You can build and push runtime images automatically using GitHub Actions using tags:
 
 ```
-git tag runtime-r35_3.5.3-7
+git tag runtime-r35_3.5.3-8
 git push --tags
 
 git tag runtime-r40_4.0.4-6

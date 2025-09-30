@@ -33,7 +33,9 @@ RUN pip3 install wheel
 RUN apt-get update && apt-get install -y ca-certificates && update-ca-certificates -f
 RUN sed -i -e 's=^mozilla/DST_Root_CA_X3.crt=!mozilla/DST_ROOT_CA_X3.crt=' /etc/ca-certificates.conf && update-ca-certificates -f
 
-RUN echo 'options(repos=c(CRAN="https://cran.rstudio.com"))' >> /usr/local/lib/R/etc/Rprofile.site
+RUN echo 'options(repos=c(CRAN="https://cran.rstudio.com"))' >> /usr/local/lib/R/etc/Rprofile.
+
+RUN chown root:root -R /usr/local/lib/R/site-library
 
 ENTRYPOINT ["/usr/local/bin/R" , "--no-save" , "--no-restore" , "--no-environ" , "--slave" ]
 
