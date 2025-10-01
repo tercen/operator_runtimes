@@ -35,7 +35,7 @@ git push --tags
 git tag runtime-r44_4.4.3-11
 git push --tags
 
-git tag runtime-r44-minimal_4.4-1
+git tag runtime-r44-minimal_4.4.3-1
 git push --tags
 
 
