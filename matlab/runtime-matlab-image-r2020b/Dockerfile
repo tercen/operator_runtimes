@@ -1,6 +1,6 @@
-FROM debian:bullseye-slim as builder
+FROM debian:bullseye-slim AS builder
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get -q update && \
     apt-get install -q -y --no-install-recommends \
@@ -38,9 +38,9 @@ RUN mkdir /mcr-install && \
 #    cd / && \
 #    rm -rf mcr-install
 
-FROM tercen/runtime-r40-slim:4.0.4-1
+FROM debian:bullseye-slim
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get -q update && \
     apt-get install -q -y --no-install-recommends \

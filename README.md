@@ -65,9 +65,16 @@ docker push ${IMAGE}
 IMAGE=tercen/runtime-r40:4.0.4-6
 IMAGE=tercen/runtime-r44-minimal:4.4-0
 docker build  --no-cache -t ${IMAGE} runtime-r44-minimal
+podman build  --no-cache -t ${IMAGE} runtime-r44-minimal
 docker push ${IMAGE}
 
-docker run -it --rm tercen/runtime-r44-minimal:4.4-0 sh
+time docker run --rm --network=host tercen/gates_plotters_operator:0.2.16 echo hello 
+time docker run --rm --network=host ghcr.io/tercen/add_operator:master echo hello
+time docker run --rm --network=host tercen/runtime-r44-minimal:4.4-0 echo hello
+time docker run --rm --network=host tercen/runtime-r44-minimal:4.4-0 R -e "teRcenHttp::GET('https://tercen.com')"
+time podman run --rm --network=host tercen/runtime-r44-minimal:4.4-0 R -e "teRcenHttp::GET('https://tercen.com')"
+
+docker run -it --rm tercen/runtime-r44-minimal:4.4-0 sh -c "teRcenHttp::GET("https://tercen.com")"
 R
 teRcenHttp::GET("https://tercen.com")
 ```
