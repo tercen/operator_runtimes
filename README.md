@@ -34,9 +34,12 @@ Runtime images are automatically built and pushed using GitHub Actions when you 
 ```bash
 # Latest R 4.4 runtimes
 git tag runtime-r44_4.4.3-12
+git push --tags
 git tag runtime-r44-minimal_4.4.3-2
+git push --tags
+git tag runtime-r44-minimal-dev_4.4.3-3
+git push --tags
 git tag runtime-r44-minimal-plot_4.4.3-2
-git tag runtime-r44-minimal-dev_4.4.3-2
 git push --tags
 
 # Legacy R runtimes
