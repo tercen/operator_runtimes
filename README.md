@@ -35,8 +35,8 @@ Runtime images are automatically built and pushed using GitHub Actions when you 
 # Latest R 4.4 runtimes
 git tag runtime-r44_4.4.3-12
 git tag runtime-r44-minimal_4.4.3-2
-git tag runtime-r44-minimal-plot_4.4.3-1
-git tag runtime-r44-minimal-dev_4.4.3-1
+git tag runtime-r44-minimal-plot_4.4.3-2
+git tag runtime-r44-minimal-dev_4.4.3-2
 git push --tags
 
 # Legacy R runtimes
