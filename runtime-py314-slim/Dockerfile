@@ -1,14 +1,12 @@
-# Multi-stage build to minimize final image size
-
 # Build stage
-FROM python:3.14-slim AS builder
+FROM python:3.14-alpine AS builder
 
 # Install system build dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apk add --no-cache \
     git \
-    build-essential \
-    pkg-config \
-    && rm -rf /var/lib/apt/lists/*
+    build-base \
+    pkgconfig \
+    && rm -rf /var/cache/apk/*
 
 # Install build tools
 RUN pip install --no-cache-dir --upgrade pip 'setuptools>=70.0.0' wheel
@@ -19,11 +17,18 @@ RUN pip install --no-cache-dir --no-build-isolation git+https://github.com/terce
 RUN pip install --no-cache-dir --no-build-isolation --no-deps git+https://github.com/tercen/tercen_python_client.git@00cebf60e2c7b3d9ef83f84f4848bb64115aebc5
 
 # Runtime stage
-FROM python:3.14-slim
+FROM python:3.14-alpine
 
-# Copy installed Python packages from builder stage
+# Copy installed Python packages and binaries from builder stage
 COPY --from=builder /usr/local/lib/python3.14/site-packages /usr/local/lib/python3.14/site-packages
-COPY --from=builder /usr/local/bin /usr/local/bin
+COPY --from=builder /usr/local/bin/ /usr/local/bin/
 
-# Set working directory
-WORKDIR /app
+# Ensure python symlink exists
+RUN ln -sf python3 /usr/local/bin/python
+
+# Remove unnecessary files to minimize size (but keep python symlinks)
+RUN find /usr/local/lib/python3.14/site-packages -name "*.pyc" -delete && \
+    find /usr/local/lib/python3.14/site-packages -name "__pycache__" -type d -exec rm -rf {} + && \
+    find /usr/local/lib/python3.14/site-packages -name "*.dist-info" -type d -exec rm -rf {} + && \
+    find /usr/local/lib/python3.14/site-packages -name "test*" -type d -exec rm -rf {} + && \
+    find /usr/local/lib/python3.14/site-packages -name "tests" -type d -exec rm -rf {} +
