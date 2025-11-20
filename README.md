@@ -47,16 +47,26 @@ git tag runtime-r40_4.0.4-6
 git tag runtime-r40-slim_4.0.4-1
 git tag runtime-r35_3.5.3-8
 git tag runtime-r35b_3.5.3-2
+
+
+
 git push --tags
 ```
 
 ### Specialized Runtimes
 ```bash
+IMAGE=tercen/runtime-python-alpine_3.14.0
+docker build --no-cache -t ${IMAGE} runtime-python-alpine
+docker push ${IMAGE}
+
+
 # Python and ML runtimes
 git tag runtime-python39_3.9-1
 git tag runtime-tf_2.17.0-gpu-1
 git tag runtime-stats_1.0-1
 git tag runtime-flowsuite_1.0-1
+
+git tag runtime-python-alpine_3.14.0
 git push --tags
 
 # Development tools
