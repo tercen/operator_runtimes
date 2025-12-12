@@ -32,9 +32,17 @@ RUN pip3 install wheel
 # needed for flowCut
 RUN apt-get install -y libgeos-dev libxt-dev libtiff5-dev libzstd-dev libwebp-dev
 
-# Install jemalloc for improved memory allocation
-RUN apt-get install -y libjemalloc-dev libjemalloc2
-ENV LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2
+# Install jemalloc 5.3+ for improved memory allocation
+RUN apt-get install -y wget build-essential && \
+    wget https://github.com/jemalloc/jemalloc/releases/download/5.3.0/jemalloc-5.3.0.tar.bz2 && \
+    tar -xjf jemalloc-5.3.0.tar.bz2 && \
+    cd jemalloc-5.3.0 && \
+    ./configure --prefix=/usr/local && \
+    make -j$(nproc) && \
+    make install && \
+    cd .. && \
+    rm -rf jemalloc-5.3.0 jemalloc-5.3.0.tar.bz2
+ENV LD_PRELOAD=/usr/local/lib/libjemalloc.so.2
 
 
 # Global site-wide config

@@ -44,7 +44,7 @@ git tag runtime-r44-minimal_4.4.3-3
 git push --tags
 
 # Legacy R runtimes
-git tag runtime-r40_4.0.4-7
+git tag runtime-r40_4.0.4-8
 git tag runtime-r40-slim_4.0.4-1
 git tag runtime-r35_3.5.3-8
 git tag runtime-r35b_3.5.3-2
