@@ -32,6 +32,10 @@ RUN pip3 install wheel
 # needed for flowCut
 RUN apt-get install -y libgeos-dev libxt-dev libtiff5-dev libzstd-dev libwebp-dev
 
+# Install jemalloc for improved memory allocation
+RUN apt-get install -y libjemalloc-dev libjemalloc2
+ENV LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2
+
 
 # Global site-wide config
 RUN  echo 'options(repos=c(TERCEN="https://cran.tercen.com/api/v1/rlib/tercen",\
