@@ -39,11 +39,12 @@ git tag runtime-r44-minimal_4.4.3-2
 git push --tags
 git tag runtime-r44-minimal-dev_4.4.3-4
 git push --tags
-git tag runtime-r44-minimal-plot_4.4.3-2
+git tag runtime-r44-minimal_4.4.3-3
+
 git push --tags
 
 # Legacy R runtimes
-git tag runtime-r40_4.0.4-6
+git tag runtime-r40_4.0.4-7
 git tag runtime-r40-slim_4.0.4-1
 git tag runtime-r35_3.5.3-8
 git tag runtime-r35b_3.5.3-2
@@ -66,7 +67,7 @@ git tag runtime-tf_2.17.0-gpu-1
 git tag runtime-stats_1.0-1
 git tag runtime-flowsuite_1.0-1
 
-git tag runtime-python-alpine_3.14.0
+git tag runtime-python-alpine_3.14.0-1
 git push --tags
 
 # Development tools
