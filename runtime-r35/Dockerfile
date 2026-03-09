@@ -1,4 +1,4 @@
-FROM docker.io/tercen/runtime-r35:3.5.3-8
+FROM docker.io/tercen/runtime-r35:3.5.3-7
 
 USER root
 
