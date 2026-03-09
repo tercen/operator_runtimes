@@ -37,6 +37,10 @@ RUN echo 'options(repos=c(CRAN="https://cran.rstudio.com"))' >> /usr/local/lib/R
 
 RUN chown root:root -R /usr/local/lib/R/site-library
 
+# Install jemalloc for improved memory allocation
+RUN apt-get update && apt-get install -y libjemalloc-dev libjemalloc2
+ENV LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2
+
 ENTRYPOINT ["/usr/local/bin/R" , "--no-save" , "--no-restore" , "--no-environ" , "--slave" ]
 
 
