@@ -23,6 +23,8 @@ RUN apk add --no-cache \
     libpng-dev \
     libjpeg-turbo \
     libjpeg-turbo-dev \
+    tiff \
+    tiff-dev \
     pango \
     pango-dev
 
