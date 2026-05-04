@@ -12,7 +12,9 @@ FROM ghcr.io/r-hub/r-minimal/r-minimal:4.4.3
 COPY --from=build /usr/local/lib/R/library /usr/local/lib/R/library
 
 # Install minimal graphics dependencies for plotting (no X11 needed)
+# + jemalloc for improved R memory allocation
 RUN apk add --no-cache \
+    jemalloc \
     cairo \
     cairo-dev \
     font-dejavu \
@@ -23,6 +25,8 @@ RUN apk add --no-cache \
     libjpeg-turbo-dev \
     pango \
     pango-dev
+
+ENV LD_PRELOAD=/usr/lib/libjemalloc.so.2
 
 # No X11 setup needed - Cairo handles graphics directly
 ENTRYPOINT ["/usr/local/bin/R", "--no-save", "--no-restore", "--no-environ", "--slave"]
